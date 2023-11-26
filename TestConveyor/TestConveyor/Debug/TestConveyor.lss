@@ -1,0 +1,1400 @@
+
+TestConveyor.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000a16  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000252  00800060  00000a16  00000aaa  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000006c  008002b2  008002b2  00000cfc  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000cfc  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000d2c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  00000d68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000012f5  00000000  00000000  00000e58  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000082e  00000000  00000000  0000214d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000cf1  00000000  00000000  0000297b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000348  00000000  00000000  0000366c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000061c  00000000  00000000  000039b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00001332  00000000  00000000  00003fd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000140  00000000  00000000  00005302  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 87 03 	jmp	0x70e	; 0x70e <__vector_8>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 9e 03 	jmp	0x73c	; 0x73c <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	12 e0       	ldi	r17, 0x02	; 2
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e1       	ldi	r30, 0x16	; 22
+  68:	fa e0       	ldi	r31, 0x0A	; 10
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 3b       	cpi	r26, 0xB2	; 178
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	23 e0       	ldi	r18, 0x03	; 3
+  78:	a2 eb       	ldi	r26, 0xB2	; 178
+  7a:	b2 e0       	ldi	r27, 0x02	; 2
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ae 31       	cpi	r26, 0x1E	; 30
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <main>
+  8a:	0c 94 09 05 	jmp	0xa12	; 0xa12 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <init_usart>:
+{
+	For(i,0,49)
+	{
+		RxData[i] = 0x00;
+	}
+}
+  92:	10 bc       	out	0x20, r1	; 32
+  94:	83 e0       	ldi	r24, 0x03	; 3
+  96:	89 b9       	out	0x09, r24	; 9
+  98:	86 e8       	ldi	r24, 0x86	; 134
+  9a:	80 bd       	out	0x20, r24	; 32
+  9c:	88 e9       	ldi	r24, 0x98	; 152
+  9e:	8a b9       	out	0x0a, r24	; 10
+  a0:	08 95       	ret
+
+000000a2 <send_byte>:
+  a2:	5d 9b       	sbis	0x0b, 5	; 11
+  a4:	fe cf       	rjmp	.-4      	; 0xa2 <send_byte>
+  a6:	8c b9       	out	0x0c, r24	; 12
+  a8:	08 95       	ret
+
+000000aa <receive>:
+  aa:	5f 9b       	sbis	0x0b, 7	; 11
+  ac:	fe cf       	rjmp	.-4      	; 0xaa <receive>
+  ae:	8c b1       	in	r24, 0x0c	; 12
+  b0:	08 95       	ret
+
+000000b2 <crc16>:
+  b2:	cf 93       	push	r28
+  b4:	df 93       	push	r29
+  b6:	dc 01       	movw	r26, r24
+  b8:	4f ef       	ldi	r20, 0xFF	; 255
+  ba:	8f ef       	ldi	r24, 0xFF	; 255
+  bc:	0f c0       	rjmp	.+30     	; 0xdc <crc16+0x2a>
+  be:	9c 91       	ld	r25, X
+  c0:	24 2f       	mov	r18, r20
+  c2:	29 27       	eor	r18, r25
+  c4:	30 e0       	ldi	r19, 0x00	; 0
+  c6:	f9 01       	movw	r30, r18
+  c8:	ee 54       	subi	r30, 0x4E	; 78
+  ca:	fe 4f       	sbci	r31, 0xFE	; 254
+  cc:	40 81       	ld	r20, Z
+  ce:	48 27       	eor	r20, r24
+  d0:	f9 01       	movw	r30, r18
+  d2:	ee 54       	subi	r30, 0x4E	; 78
+  d4:	ff 4f       	sbci	r31, 0xFF	; 255
+  d6:	80 81       	ld	r24, Z
+  d8:	be 01       	movw	r22, r28
+  da:	11 96       	adiw	r26, 0x01	; 1
+  dc:	eb 01       	movw	r28, r22
+  de:	21 97       	sbiw	r28, 0x01	; 1
+  e0:	67 2b       	or	r22, r23
+  e2:	69 f7       	brne	.-38     	; 0xbe <crc16+0xc>
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	98 2f       	mov	r25, r24
+  e8:	88 27       	eor	r24, r24
+  ea:	84 2b       	or	r24, r20
+  ec:	df 91       	pop	r29
+  ee:	cf 91       	pop	r28
+  f0:	08 95       	ret
+
+000000f2 <sendData>:
+  f2:	ef 92       	push	r14
+  f4:	ff 92       	push	r15
+  f6:	0f 93       	push	r16
+  f8:	1f 93       	push	r17
+  fa:	cf 93       	push	r28
+  fc:	df 93       	push	r29
+  fe:	7c 01       	movw	r14, r24
+ 100:	8b 01       	movw	r16, r22
+ 102:	0e 94 59 00 	call	0xb2	; 0xb2 <crc16>
+ 106:	f7 01       	movw	r30, r14
+ 108:	e0 0f       	add	r30, r16
+ 10a:	f1 1f       	adc	r31, r17
+ 10c:	80 83       	st	Z, r24
+ 10e:	f8 01       	movw	r30, r16
+ 110:	31 96       	adiw	r30, 0x01	; 1
+ 112:	ee 0d       	add	r30, r14
+ 114:	ff 1d       	adc	r31, r15
+ 116:	90 83       	st	Z, r25
+ 118:	82 b3       	in	r24, 0x12	; 18
+ 11a:	82 60       	ori	r24, 0x02	; 2
+ 11c:	82 bb       	out	0x12, r24	; 18
+ 11e:	c0 e0       	ldi	r28, 0x00	; 0
+ 120:	d0 e0       	ldi	r29, 0x00	; 0
+ 122:	07 c0       	rjmp	.+14     	; 0x132 <sendData+0x40>
+ 124:	f7 01       	movw	r30, r14
+ 126:	ec 0f       	add	r30, r28
+ 128:	fd 1f       	adc	r31, r29
+ 12a:	80 81       	ld	r24, Z
+ 12c:	0e 94 51 00 	call	0xa2	; 0xa2 <send_byte>
+ 130:	21 96       	adiw	r28, 0x01	; 1
+ 132:	c8 01       	movw	r24, r16
+ 134:	01 96       	adiw	r24, 0x01	; 1
+ 136:	8c 17       	cp	r24, r28
+ 138:	9d 07       	cpc	r25, r29
+ 13a:	a4 f7       	brge	.-24     	; 0x124 <sendData+0x32>
+ 13c:	82 b3       	in	r24, 0x12	; 18
+ 13e:	8d 7f       	andi	r24, 0xFD	; 253
+ 140:	82 bb       	out	0x12, r24	; 18
+ 142:	df 91       	pop	r29
+ 144:	cf 91       	pop	r28
+ 146:	1f 91       	pop	r17
+ 148:	0f 91       	pop	r16
+ 14a:	ff 90       	pop	r15
+ 14c:	ef 90       	pop	r14
+ 14e:	08 95       	ret
+
+00000150 <modbusException>:
+ 150:	ac ee       	ldi	r26, 0xEC	; 236
+ 152:	b2 e0       	ldi	r27, 0x02	; 2
+ 154:	9c 91       	ld	r25, X
+ 156:	ea eb       	ldi	r30, 0xBA	; 186
+ 158:	f2 e0       	ldi	r31, 0x02	; 2
+ 15a:	90 83       	st	Z, r25
+ 15c:	11 96       	adiw	r26, 0x01	; 1
+ 15e:	9c 91       	ld	r25, X
+ 160:	90 68       	ori	r25, 0x80	; 128
+ 162:	91 83       	std	Z+1, r25	; 0x01
+ 164:	82 83       	std	Z+2, r24	; 0x02
+ 166:	63 e0       	ldi	r22, 0x03	; 3
+ 168:	70 e0       	ldi	r23, 0x00	; 0
+ 16a:	cf 01       	movw	r24, r30
+ 16c:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 170:	08 95       	ret
+
+00000172 <readHoldingRegs>:
+ 172:	ec ee       	ldi	r30, 0xEC	; 236
+ 174:	f2 e0       	ldi	r31, 0x02	; 2
+ 176:	82 81       	ldd	r24, Z+2	; 0x02
+ 178:	90 e0       	ldi	r25, 0x00	; 0
+ 17a:	98 2f       	mov	r25, r24
+ 17c:	88 27       	eor	r24, r24
+ 17e:	23 81       	ldd	r18, Z+3	; 0x03
+ 180:	82 2b       	or	r24, r18
+ 182:	9c 01       	movw	r18, r24
+ 184:	44 81       	ldd	r20, Z+4	; 0x04
+ 186:	50 e0       	ldi	r21, 0x00	; 0
+ 188:	54 2f       	mov	r21, r20
+ 18a:	44 27       	eor	r20, r20
+ 18c:	65 81       	ldd	r22, Z+5	; 0x05
+ 18e:	46 2b       	or	r20, r22
+ 190:	da 01       	movw	r26, r20
+ 192:	ba 01       	movw	r22, r20
+ 194:	61 50       	subi	r22, 0x01	; 1
+ 196:	71 09       	sbc	r23, r1
+ 198:	6d 37       	cpi	r22, 0x7D	; 125
+ 19a:	71 05       	cpc	r23, r1
+ 19c:	28 f0       	brcs	.+10     	; 0x1a8 <readHoldingRegs+0x36>
+ 19e:	83 e0       	ldi	r24, 0x03	; 3
+ 1a0:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 1a4:	80 e0       	ldi	r24, 0x00	; 0
+ 1a6:	08 95       	ret
+ 1a8:	84 0f       	add	r24, r20
+ 1aa:	95 1f       	adc	r25, r21
+ 1ac:	01 97       	sbiw	r24, 0x01	; 1
+ 1ae:	4e 97       	sbiw	r24, 0x1e	; 30
+ 1b0:	28 f0       	brcs	.+10     	; 0x1bc <readHoldingRegs+0x4a>
+ 1b2:	82 e0       	ldi	r24, 0x02	; 2
+ 1b4:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 1b8:	80 e0       	ldi	r24, 0x00	; 0
+ 1ba:	08 95       	ret
+ 1bc:	ea eb       	ldi	r30, 0xBA	; 186
+ 1be:	f2 e0       	ldi	r31, 0x02	; 2
+ 1c0:	8d e1       	ldi	r24, 0x1D	; 29
+ 1c2:	80 83       	st	Z, r24
+ 1c4:	80 91 ed 02 	lds	r24, 0x02ED	; 0x8002ed <RxData+0x1>
+ 1c8:	81 83       	std	Z+1, r24	; 0x01
+ 1ca:	44 0f       	add	r20, r20
+ 1cc:	42 83       	std	Z+2, r20	; 0x02
+ 1ce:	80 e0       	ldi	r24, 0x00	; 0
+ 1d0:	90 e0       	ldi	r25, 0x00	; 0
+ 1d2:	63 e0       	ldi	r22, 0x03	; 3
+ 1d4:	70 e0       	ldi	r23, 0x00	; 0
+ 1d6:	15 c0       	rjmp	.+42     	; 0x202 <__EEPROM_REGION_LENGTH__+0x2>
+ 1d8:	f9 01       	movw	r30, r18
+ 1da:	ee 0f       	add	r30, r30
+ 1dc:	ff 1f       	adc	r31, r31
+ 1de:	ea 58       	subi	r30, 0x8A	; 138
+ 1e0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1e2:	40 81       	ld	r20, Z
+ 1e4:	51 81       	ldd	r21, Z+1	; 0x01
+ 1e6:	fb 01       	movw	r30, r22
+ 1e8:	e6 54       	subi	r30, 0x46	; 70
+ 1ea:	fd 4f       	sbci	r31, 0xFD	; 253
+ 1ec:	50 83       	st	Z, r21
+ 1ee:	fb 01       	movw	r30, r22
+ 1f0:	31 96       	adiw	r30, 0x01	; 1
+ 1f2:	e6 54       	subi	r30, 0x46	; 70
+ 1f4:	fd 4f       	sbci	r31, 0xFD	; 253
+ 1f6:	6e 5f       	subi	r22, 0xFE	; 254
+ 1f8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1fa:	40 83       	st	Z, r20
+ 1fc:	2f 5f       	subi	r18, 0xFF	; 255
+ 1fe:	3f 4f       	sbci	r19, 0xFF	; 255
+ 200:	01 96       	adiw	r24, 0x01	; 1
+ 202:	8a 17       	cp	r24, r26
+ 204:	9b 07       	cpc	r25, r27
+ 206:	40 f3       	brcs	.-48     	; 0x1d8 <readHoldingRegs+0x66>
+ 208:	8a eb       	ldi	r24, 0xBA	; 186
+ 20a:	92 e0       	ldi	r25, 0x02	; 2
+ 20c:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 210:	81 e0       	ldi	r24, 0x01	; 1
+ 212:	08 95       	ret
+
+00000214 <readCoils>:
+ 214:	ef 92       	push	r14
+ 216:	ff 92       	push	r15
+ 218:	0f 93       	push	r16
+ 21a:	1f 93       	push	r17
+ 21c:	cf 93       	push	r28
+ 21e:	df 93       	push	r29
+ 220:	ec ee       	ldi	r30, 0xEC	; 236
+ 222:	f2 e0       	ldi	r31, 0x02	; 2
+ 224:	22 81       	ldd	r18, Z+2	; 0x02
+ 226:	30 e0       	ldi	r19, 0x00	; 0
+ 228:	32 2f       	mov	r19, r18
+ 22a:	22 27       	eor	r18, r18
+ 22c:	83 81       	ldd	r24, Z+3	; 0x03
+ 22e:	28 2b       	or	r18, r24
+ 230:	c4 81       	ldd	r28, Z+4	; 0x04
+ 232:	d0 e0       	ldi	r29, 0x00	; 0
+ 234:	dc 2f       	mov	r29, r28
+ 236:	cc 27       	eor	r28, r28
+ 238:	85 81       	ldd	r24, Z+5	; 0x05
+ 23a:	c8 2b       	or	r28, r24
+ 23c:	8e 01       	movw	r16, r28
+ 23e:	ce 01       	movw	r24, r28
+ 240:	01 97       	sbiw	r24, 0x01	; 1
+ 242:	80 3d       	cpi	r24, 0xD0	; 208
+ 244:	97 40       	sbci	r25, 0x07	; 7
+ 246:	28 f0       	brcs	.+10     	; 0x252 <readCoils+0x3e>
+ 248:	83 e0       	ldi	r24, 0x03	; 3
+ 24a:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 24e:	80 e0       	ldi	r24, 0x00	; 0
+ 250:	6e c0       	rjmp	.+220    	; 0x32e <readCoils+0x11a>
+ 252:	c9 01       	movw	r24, r18
+ 254:	8c 0f       	add	r24, r28
+ 256:	9d 1f       	adc	r25, r29
+ 258:	01 97       	sbiw	r24, 0x01	; 1
+ 25a:	88 3c       	cpi	r24, 0xC8	; 200
+ 25c:	91 05       	cpc	r25, r1
+ 25e:	28 f0       	brcs	.+10     	; 0x26a <readCoils+0x56>
+ 260:	82 e0       	ldi	r24, 0x02	; 2
+ 262:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 266:	80 e0       	ldi	r24, 0x00	; 0
+ 268:	62 c0       	rjmp	.+196    	; 0x32e <readCoils+0x11a>
+ 26a:	ea eb       	ldi	r30, 0xBA	; 186
+ 26c:	f2 e0       	ldi	r31, 0x02	; 2
+ 26e:	8d e1       	ldi	r24, 0x1D	; 29
+ 270:	80 83       	st	Z, r24
+ 272:	80 91 ed 02 	lds	r24, 0x02ED	; 0x8002ed <RxData+0x1>
+ 276:	81 83       	std	Z+1, r24	; 0x01
+ 278:	ce 01       	movw	r24, r28
+ 27a:	96 95       	lsr	r25
+ 27c:	87 95       	ror	r24
+ 27e:	96 95       	lsr	r25
+ 280:	87 95       	ror	r24
+ 282:	96 95       	lsr	r25
+ 284:	87 95       	ror	r24
+ 286:	7e 01       	movw	r14, r28
+ 288:	47 e0       	ldi	r20, 0x07	; 7
+ 28a:	e4 22       	and	r14, r20
+ 28c:	ff 24       	eor	r15, r15
+ 28e:	e1 14       	cp	r14, r1
+ 290:	f1 04       	cpc	r15, r1
+ 292:	11 f0       	breq	.+4      	; 0x298 <readCoils+0x84>
+ 294:	41 e0       	ldi	r20, 0x01	; 1
+ 296:	01 c0       	rjmp	.+2      	; 0x29a <readCoils+0x86>
+ 298:	40 e0       	ldi	r20, 0x00	; 0
+ 29a:	84 0f       	add	r24, r20
+ 29c:	80 93 bc 02 	sts	0x02BC, r24	; 0x8002bc <TxData+0x2>
+ 2a0:	d9 01       	movw	r26, r18
+ 2a2:	b6 95       	lsr	r27
+ 2a4:	a7 95       	ror	r26
+ 2a6:	b6 95       	lsr	r27
+ 2a8:	a7 95       	ror	r26
+ 2aa:	b6 95       	lsr	r27
+ 2ac:	a7 95       	ror	r26
+ 2ae:	27 70       	andi	r18, 0x07	; 7
+ 2b0:	33 27       	eor	r19, r19
+ 2b2:	e0 e0       	ldi	r30, 0x00	; 0
+ 2b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b6:	40 e0       	ldi	r20, 0x00	; 0
+ 2b8:	50 e0       	ldi	r21, 0x00	; 0
+ 2ba:	63 e0       	ldi	r22, 0x03	; 3
+ 2bc:	70 e0       	ldi	r23, 0x00	; 0
+ 2be:	2b c0       	rjmp	.+86     	; 0x316 <readCoils+0x102>
+ 2c0:	ed 01       	movw	r28, r26
+ 2c2:	ce 59       	subi	r28, 0x9E	; 158
+ 2c4:	df 4f       	sbci	r29, 0xFF	; 255
+ 2c6:	88 81       	ld	r24, Y
+ 2c8:	90 e0       	ldi	r25, 0x00	; 0
+ 2ca:	02 2e       	mov	r0, r18
+ 2cc:	02 c0       	rjmp	.+4      	; 0x2d2 <readCoils+0xbe>
+ 2ce:	95 95       	asr	r25
+ 2d0:	87 95       	ror	r24
+ 2d2:	0a 94       	dec	r0
+ 2d4:	e2 f7       	brpl	.-8      	; 0x2ce <readCoils+0xba>
+ 2d6:	81 70       	andi	r24, 0x01	; 1
+ 2d8:	99 27       	eor	r25, r25
+ 2da:	04 2e       	mov	r0, r20
+ 2dc:	02 c0       	rjmp	.+4      	; 0x2e2 <readCoils+0xce>
+ 2de:	88 0f       	add	r24, r24
+ 2e0:	99 1f       	adc	r25, r25
+ 2e2:	0a 94       	dec	r0
+ 2e4:	e2 f7       	brpl	.-8      	; 0x2de <readCoils+0xca>
+ 2e6:	eb 01       	movw	r28, r22
+ 2e8:	c6 54       	subi	r28, 0x46	; 70
+ 2ea:	dd 4f       	sbci	r29, 0xFD	; 253
+ 2ec:	98 81       	ld	r25, Y
+ 2ee:	89 2b       	or	r24, r25
+ 2f0:	88 83       	st	Y, r24
+ 2f2:	4f 5f       	subi	r20, 0xFF	; 255
+ 2f4:	5f 4f       	sbci	r21, 0xFF	; 255
+ 2f6:	2f 5f       	subi	r18, 0xFF	; 255
+ 2f8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2fa:	48 30       	cpi	r20, 0x08	; 8
+ 2fc:	51 05       	cpc	r21, r1
+ 2fe:	24 f0       	brlt	.+8      	; 0x308 <readCoils+0xf4>
+ 300:	6f 5f       	subi	r22, 0xFF	; 255
+ 302:	7f 4f       	sbci	r23, 0xFF	; 255
+ 304:	40 e0       	ldi	r20, 0x00	; 0
+ 306:	50 e0       	ldi	r21, 0x00	; 0
+ 308:	28 30       	cpi	r18, 0x08	; 8
+ 30a:	31 05       	cpc	r19, r1
+ 30c:	18 f0       	brcs	.+6      	; 0x314 <readCoils+0x100>
+ 30e:	11 96       	adiw	r26, 0x01	; 1
+ 310:	20 e0       	ldi	r18, 0x00	; 0
+ 312:	30 e0       	ldi	r19, 0x00	; 0
+ 314:	31 96       	adiw	r30, 0x01	; 1
+ 316:	e0 17       	cp	r30, r16
+ 318:	f1 07       	cpc	r31, r17
+ 31a:	90 f2       	brcs	.-92     	; 0x2c0 <readCoils+0xac>
+ 31c:	ef 28       	or	r14, r15
+ 31e:	11 f0       	breq	.+4      	; 0x324 <readCoils+0x110>
+ 320:	6f 5f       	subi	r22, 0xFF	; 255
+ 322:	7f 4f       	sbci	r23, 0xFF	; 255
+ 324:	8a eb       	ldi	r24, 0xBA	; 186
+ 326:	92 e0       	ldi	r25, 0x02	; 2
+ 328:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 32c:	81 e0       	ldi	r24, 0x01	; 1
+ 32e:	df 91       	pop	r29
+ 330:	cf 91       	pop	r28
+ 332:	1f 91       	pop	r17
+ 334:	0f 91       	pop	r16
+ 336:	ff 90       	pop	r15
+ 338:	ef 90       	pop	r14
+ 33a:	08 95       	ret
+
+0000033c <writeSingleReg>:
+ 33c:	ec ee       	ldi	r30, 0xEC	; 236
+ 33e:	f2 e0       	ldi	r31, 0x02	; 2
+ 340:	52 81       	ldd	r21, Z+2	; 0x02
+ 342:	85 2f       	mov	r24, r21
+ 344:	90 e0       	ldi	r25, 0x00	; 0
+ 346:	98 2f       	mov	r25, r24
+ 348:	88 27       	eor	r24, r24
+ 34a:	43 81       	ldd	r20, Z+3	; 0x03
+ 34c:	84 2b       	or	r24, r20
+ 34e:	82 33       	cpi	r24, 0x32	; 50
+ 350:	91 05       	cpc	r25, r1
+ 352:	28 f0       	brcs	.+10     	; 0x35e <writeSingleReg+0x22>
+ 354:	82 e0       	ldi	r24, 0x02	; 2
+ 356:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 35a:	80 e0       	ldi	r24, 0x00	; 0
+ 35c:	08 95       	ret
+ 35e:	ac ee       	ldi	r26, 0xEC	; 236
+ 360:	b2 e0       	ldi	r27, 0x02	; 2
+ 362:	14 96       	adiw	r26, 0x04	; 4
+ 364:	7c 91       	ld	r23, X
+ 366:	14 97       	sbiw	r26, 0x04	; 4
+ 368:	27 2f       	mov	r18, r23
+ 36a:	30 e0       	ldi	r19, 0x00	; 0
+ 36c:	32 2f       	mov	r19, r18
+ 36e:	22 27       	eor	r18, r18
+ 370:	15 96       	adiw	r26, 0x05	; 5
+ 372:	6c 91       	ld	r22, X
+ 374:	15 97       	sbiw	r26, 0x05	; 5
+ 376:	26 2b       	or	r18, r22
+ 378:	88 0f       	add	r24, r24
+ 37a:	99 1f       	adc	r25, r25
+ 37c:	fc 01       	movw	r30, r24
+ 37e:	ea 58       	subi	r30, 0x8A	; 138
+ 380:	ff 4f       	sbci	r31, 0xFF	; 255
+ 382:	31 83       	std	Z+1, r19	; 0x01
+ 384:	20 83       	st	Z, r18
+ 386:	ea eb       	ldi	r30, 0xBA	; 186
+ 388:	f2 e0       	ldi	r31, 0x02	; 2
+ 38a:	8d e1       	ldi	r24, 0x1D	; 29
+ 38c:	80 83       	st	Z, r24
+ 38e:	11 96       	adiw	r26, 0x01	; 1
+ 390:	8c 91       	ld	r24, X
+ 392:	81 83       	std	Z+1, r24	; 0x01
+ 394:	52 83       	std	Z+2, r21	; 0x02
+ 396:	43 83       	std	Z+3, r20	; 0x03
+ 398:	74 83       	std	Z+4, r23	; 0x04
+ 39a:	65 83       	std	Z+5, r22	; 0x05
+ 39c:	66 e0       	ldi	r22, 0x06	; 6
+ 39e:	70 e0       	ldi	r23, 0x00	; 0
+ 3a0:	cf 01       	movw	r24, r30
+ 3a2:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 3a6:	81 e0       	ldi	r24, 0x01	; 1
+ 3a8:	08 95       	ret
+
+000003aa <writeSingleCoil>:
+ 3aa:	ec ee       	ldi	r30, 0xEC	; 236
+ 3ac:	f2 e0       	ldi	r31, 0x02	; 2
+ 3ae:	42 81       	ldd	r20, Z+2	; 0x02
+ 3b0:	84 2f       	mov	r24, r20
+ 3b2:	90 e0       	ldi	r25, 0x00	; 0
+ 3b4:	98 2f       	mov	r25, r24
+ 3b6:	88 27       	eor	r24, r24
+ 3b8:	33 81       	ldd	r19, Z+3	; 0x03
+ 3ba:	83 2b       	or	r24, r19
+ 3bc:	88 3c       	cpi	r24, 0xC8	; 200
+ 3be:	91 05       	cpc	r25, r1
+ 3c0:	28 f0       	brcs	.+10     	; 0x3cc <writeSingleCoil+0x22>
+ 3c2:	82 e0       	ldi	r24, 0x02	; 2
+ 3c4:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 3c8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ca:	08 95       	ret
+ 3cc:	bc 01       	movw	r22, r24
+ 3ce:	76 95       	lsr	r23
+ 3d0:	67 95       	ror	r22
+ 3d2:	76 95       	lsr	r23
+ 3d4:	67 95       	ror	r22
+ 3d6:	76 95       	lsr	r23
+ 3d8:	67 95       	ror	r22
+ 3da:	87 70       	andi	r24, 0x07	; 7
+ 3dc:	99 27       	eor	r25, r25
+ 3de:	20 91 f0 02 	lds	r18, 0x02F0	; 0x8002f0 <RxData+0x4>
+ 3e2:	2f 3f       	cpi	r18, 0xFF	; 255
+ 3e4:	a1 f4       	brne	.+40     	; 0x40e <__DATA_REGION_LENGTH__+0xe>
+ 3e6:	50 91 f1 02 	lds	r21, 0x02F1	; 0x8002f1 <RxData+0x5>
+ 3ea:	51 11       	cpse	r21, r1
+ 3ec:	10 c0       	rjmp	.+32     	; 0x40e <__DATA_REGION_LENGTH__+0xe>
+ 3ee:	e1 e0       	ldi	r30, 0x01	; 1
+ 3f0:	f0 e0       	ldi	r31, 0x00	; 0
+ 3f2:	df 01       	movw	r26, r30
+ 3f4:	02 c0       	rjmp	.+4      	; 0x3fa <writeSingleCoil+0x50>
+ 3f6:	aa 0f       	add	r26, r26
+ 3f8:	bb 1f       	adc	r27, r27
+ 3fa:	8a 95       	dec	r24
+ 3fc:	e2 f7       	brpl	.-8      	; 0x3f6 <writeSingleCoil+0x4c>
+ 3fe:	cd 01       	movw	r24, r26
+ 400:	fb 01       	movw	r30, r22
+ 402:	ee 59       	subi	r30, 0x9E	; 158
+ 404:	ff 4f       	sbci	r31, 0xFF	; 255
+ 406:	90 81       	ld	r25, Z
+ 408:	89 2b       	or	r24, r25
+ 40a:	80 83       	st	Z, r24
+ 40c:	16 c0       	rjmp	.+44     	; 0x43a <__DATA_REGION_LENGTH__+0x3a>
+ 40e:	21 11       	cpse	r18, r1
+ 410:	14 c0       	rjmp	.+40     	; 0x43a <__DATA_REGION_LENGTH__+0x3a>
+ 412:	50 91 f1 02 	lds	r21, 0x02F1	; 0x8002f1 <RxData+0x5>
+ 416:	51 11       	cpse	r21, r1
+ 418:	10 c0       	rjmp	.+32     	; 0x43a <__DATA_REGION_LENGTH__+0x3a>
+ 41a:	e1 e0       	ldi	r30, 0x01	; 1
+ 41c:	f0 e0       	ldi	r31, 0x00	; 0
+ 41e:	df 01       	movw	r26, r30
+ 420:	02 c0       	rjmp	.+4      	; 0x426 <__DATA_REGION_LENGTH__+0x26>
+ 422:	aa 0f       	add	r26, r26
+ 424:	bb 1f       	adc	r27, r27
+ 426:	8a 95       	dec	r24
+ 428:	e2 f7       	brpl	.-8      	; 0x422 <__DATA_REGION_LENGTH__+0x22>
+ 42a:	cd 01       	movw	r24, r26
+ 42c:	fb 01       	movw	r30, r22
+ 42e:	ee 59       	subi	r30, 0x9E	; 158
+ 430:	ff 4f       	sbci	r31, 0xFF	; 255
+ 432:	80 95       	com	r24
+ 434:	90 81       	ld	r25, Z
+ 436:	89 23       	and	r24, r25
+ 438:	80 83       	st	Z, r24
+ 43a:	ea eb       	ldi	r30, 0xBA	; 186
+ 43c:	f2 e0       	ldi	r31, 0x02	; 2
+ 43e:	8d e1       	ldi	r24, 0x1D	; 29
+ 440:	80 83       	st	Z, r24
+ 442:	ac ee       	ldi	r26, 0xEC	; 236
+ 444:	b2 e0       	ldi	r27, 0x02	; 2
+ 446:	11 96       	adiw	r26, 0x01	; 1
+ 448:	8c 91       	ld	r24, X
+ 44a:	11 97       	sbiw	r26, 0x01	; 1
+ 44c:	81 83       	std	Z+1, r24	; 0x01
+ 44e:	42 83       	std	Z+2, r20	; 0x02
+ 450:	33 83       	std	Z+3, r19	; 0x03
+ 452:	24 83       	std	Z+4, r18	; 0x04
+ 454:	15 96       	adiw	r26, 0x05	; 5
+ 456:	8c 91       	ld	r24, X
+ 458:	85 83       	std	Z+5, r24	; 0x05
+ 45a:	66 e0       	ldi	r22, 0x06	; 6
+ 45c:	70 e0       	ldi	r23, 0x00	; 0
+ 45e:	cf 01       	movw	r24, r30
+ 460:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 464:	81 e0       	ldi	r24, 0x01	; 1
+ 466:	08 95       	ret
+
+00000468 <writeMultiCoils>:
+ 468:	af 92       	push	r10
+ 46a:	bf 92       	push	r11
+ 46c:	cf 92       	push	r12
+ 46e:	df 92       	push	r13
+ 470:	ef 92       	push	r14
+ 472:	ff 92       	push	r15
+ 474:	0f 93       	push	r16
+ 476:	1f 93       	push	r17
+ 478:	cf 93       	push	r28
+ 47a:	df 93       	push	r29
+ 47c:	ec ee       	ldi	r30, 0xEC	; 236
+ 47e:	f2 e0       	ldi	r31, 0x02	; 2
+ 480:	c2 80       	ldd	r12, Z+2	; 0x02
+ 482:	2c 2d       	mov	r18, r12
+ 484:	30 e0       	ldi	r19, 0x00	; 0
+ 486:	32 2f       	mov	r19, r18
+ 488:	22 27       	eor	r18, r18
+ 48a:	d3 80       	ldd	r13, Z+3	; 0x03
+ 48c:	2d 29       	or	r18, r13
+ 48e:	e4 80       	ldd	r14, Z+4	; 0x04
+ 490:	8e 2d       	mov	r24, r14
+ 492:	90 e0       	ldi	r25, 0x00	; 0
+ 494:	98 2f       	mov	r25, r24
+ 496:	88 27       	eor	r24, r24
+ 498:	f5 80       	ldd	r15, Z+5	; 0x05
+ 49a:	8f 29       	or	r24, r15
+ 49c:	5c 01       	movw	r10, r24
+ 49e:	ac 01       	movw	r20, r24
+ 4a0:	41 50       	subi	r20, 0x01	; 1
+ 4a2:	51 09       	sbc	r21, r1
+ 4a4:	40 3b       	cpi	r20, 0xB0	; 176
+ 4a6:	57 40       	sbci	r21, 0x07	; 7
+ 4a8:	28 f0       	brcs	.+10     	; 0x4b4 <writeMultiCoils+0x4c>
+ 4aa:	83 e0       	ldi	r24, 0x03	; 3
+ 4ac:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 4b0:	80 e0       	ldi	r24, 0x00	; 0
+ 4b2:	70 c0       	rjmp	.+224    	; 0x594 <writeMultiCoils+0x12c>
+ 4b4:	82 0f       	add	r24, r18
+ 4b6:	93 1f       	adc	r25, r19
+ 4b8:	01 97       	sbiw	r24, 0x01	; 1
+ 4ba:	88 3c       	cpi	r24, 0xC8	; 200
+ 4bc:	91 05       	cpc	r25, r1
+ 4be:	28 f0       	brcs	.+10     	; 0x4ca <writeMultiCoils+0x62>
+ 4c0:	82 e0       	ldi	r24, 0x02	; 2
+ 4c2:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 4c6:	80 e0       	ldi	r24, 0x00	; 0
+ 4c8:	65 c0       	rjmp	.+202    	; 0x594 <writeMultiCoils+0x12c>
+ 4ca:	d9 01       	movw	r26, r18
+ 4cc:	b6 95       	lsr	r27
+ 4ce:	a7 95       	ror	r26
+ 4d0:	b6 95       	lsr	r27
+ 4d2:	a7 95       	ror	r26
+ 4d4:	b6 95       	lsr	r27
+ 4d6:	a7 95       	ror	r26
+ 4d8:	27 70       	andi	r18, 0x07	; 7
+ 4da:	33 27       	eor	r19, r19
+ 4dc:	60 e0       	ldi	r22, 0x00	; 0
+ 4de:	70 e0       	ldi	r23, 0x00	; 0
+ 4e0:	e7 e0       	ldi	r30, 0x07	; 7
+ 4e2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4e4:	40 e0       	ldi	r20, 0x00	; 0
+ 4e6:	50 e0       	ldi	r21, 0x00	; 0
+ 4e8:	40 c0       	rjmp	.+128    	; 0x56a <writeMultiCoils+0x102>
+ 4ea:	cf 01       	movw	r24, r30
+ 4ec:	84 51       	subi	r24, 0x14	; 20
+ 4ee:	9d 4f       	sbci	r25, 0xFD	; 253
+ 4f0:	ec 01       	movw	r28, r24
+ 4f2:	88 81       	ld	r24, Y
+ 4f4:	90 e0       	ldi	r25, 0x00	; 0
+ 4f6:	04 2e       	mov	r0, r20
+ 4f8:	02 c0       	rjmp	.+4      	; 0x4fe <writeMultiCoils+0x96>
+ 4fa:	95 95       	asr	r25
+ 4fc:	87 95       	ror	r24
+ 4fe:	0a 94       	dec	r0
+ 500:	e2 f7       	brpl	.-8      	; 0x4fa <writeMultiCoils+0x92>
+ 502:	80 ff       	sbrs	r24, 0
+ 504:	10 c0       	rjmp	.+32     	; 0x526 <writeMultiCoils+0xbe>
+ 506:	81 e0       	ldi	r24, 0x01	; 1
+ 508:	90 e0       	ldi	r25, 0x00	; 0
+ 50a:	02 2e       	mov	r0, r18
+ 50c:	02 c0       	rjmp	.+4      	; 0x512 <writeMultiCoils+0xaa>
+ 50e:	88 0f       	add	r24, r24
+ 510:	99 1f       	adc	r25, r25
+ 512:	0a 94       	dec	r0
+ 514:	e2 f7       	brpl	.-8      	; 0x50e <writeMultiCoils+0xa6>
+ 516:	8d 01       	movw	r16, r26
+ 518:	0e 59       	subi	r16, 0x9E	; 158
+ 51a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 51c:	e8 01       	movw	r28, r16
+ 51e:	98 81       	ld	r25, Y
+ 520:	89 2b       	or	r24, r25
+ 522:	88 83       	st	Y, r24
+ 524:	10 c0       	rjmp	.+32     	; 0x546 <writeMultiCoils+0xde>
+ 526:	81 e0       	ldi	r24, 0x01	; 1
+ 528:	90 e0       	ldi	r25, 0x00	; 0
+ 52a:	02 2e       	mov	r0, r18
+ 52c:	02 c0       	rjmp	.+4      	; 0x532 <writeMultiCoils+0xca>
+ 52e:	88 0f       	add	r24, r24
+ 530:	99 1f       	adc	r25, r25
+ 532:	0a 94       	dec	r0
+ 534:	e2 f7       	brpl	.-8      	; 0x52e <writeMultiCoils+0xc6>
+ 536:	8d 01       	movw	r16, r26
+ 538:	0e 59       	subi	r16, 0x9E	; 158
+ 53a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 53c:	80 95       	com	r24
+ 53e:	e8 01       	movw	r28, r16
+ 540:	98 81       	ld	r25, Y
+ 542:	89 23       	and	r24, r25
+ 544:	88 83       	st	Y, r24
+ 546:	2f 5f       	subi	r18, 0xFF	; 255
+ 548:	3f 4f       	sbci	r19, 0xFF	; 255
+ 54a:	4f 5f       	subi	r20, 0xFF	; 255
+ 54c:	5f 4f       	sbci	r21, 0xFF	; 255
+ 54e:	48 30       	cpi	r20, 0x08	; 8
+ 550:	51 05       	cpc	r21, r1
+ 552:	1c f0       	brlt	.+6      	; 0x55a <writeMultiCoils+0xf2>
+ 554:	31 96       	adiw	r30, 0x01	; 1
+ 556:	40 e0       	ldi	r20, 0x00	; 0
+ 558:	50 e0       	ldi	r21, 0x00	; 0
+ 55a:	28 30       	cpi	r18, 0x08	; 8
+ 55c:	31 05       	cpc	r19, r1
+ 55e:	18 f0       	brcs	.+6      	; 0x566 <writeMultiCoils+0xfe>
+ 560:	11 96       	adiw	r26, 0x01	; 1
+ 562:	20 e0       	ldi	r18, 0x00	; 0
+ 564:	30 e0       	ldi	r19, 0x00	; 0
+ 566:	6f 5f       	subi	r22, 0xFF	; 255
+ 568:	7f 4f       	sbci	r23, 0xFF	; 255
+ 56a:	6a 15       	cp	r22, r10
+ 56c:	7b 05       	cpc	r23, r11
+ 56e:	08 f4       	brcc	.+2      	; 0x572 <writeMultiCoils+0x10a>
+ 570:	bc cf       	rjmp	.-136    	; 0x4ea <writeMultiCoils+0x82>
+ 572:	ea eb       	ldi	r30, 0xBA	; 186
+ 574:	f2 e0       	ldi	r31, 0x02	; 2
+ 576:	8d e1       	ldi	r24, 0x1D	; 29
+ 578:	80 83       	st	Z, r24
+ 57a:	80 91 ed 02 	lds	r24, 0x02ED	; 0x8002ed <RxData+0x1>
+ 57e:	81 83       	std	Z+1, r24	; 0x01
+ 580:	c2 82       	std	Z+2, r12	; 0x02
+ 582:	d3 82       	std	Z+3, r13	; 0x03
+ 584:	e4 82       	std	Z+4, r14	; 0x04
+ 586:	f5 82       	std	Z+5, r15	; 0x05
+ 588:	66 e0       	ldi	r22, 0x06	; 6
+ 58a:	70 e0       	ldi	r23, 0x00	; 0
+ 58c:	cf 01       	movw	r24, r30
+ 58e:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 592:	81 e0       	ldi	r24, 0x01	; 1
+ 594:	df 91       	pop	r29
+ 596:	cf 91       	pop	r28
+ 598:	1f 91       	pop	r17
+ 59a:	0f 91       	pop	r16
+ 59c:	ff 90       	pop	r15
+ 59e:	ef 90       	pop	r14
+ 5a0:	df 90       	pop	r13
+ 5a2:	cf 90       	pop	r12
+ 5a4:	bf 90       	pop	r11
+ 5a6:	af 90       	pop	r10
+ 5a8:	08 95       	ret
+
+000005aa <writeMultigRegs>:
+ 5aa:	0f 93       	push	r16
+ 5ac:	1f 93       	push	r17
+ 5ae:	cf 93       	push	r28
+ 5b0:	df 93       	push	r29
+ 5b2:	ec ee       	ldi	r30, 0xEC	; 236
+ 5b4:	f2 e0       	ldi	r31, 0x02	; 2
+ 5b6:	02 81       	ldd	r16, Z+2	; 0x02
+ 5b8:	80 2f       	mov	r24, r16
+ 5ba:	90 e0       	ldi	r25, 0x00	; 0
+ 5bc:	98 2f       	mov	r25, r24
+ 5be:	88 27       	eor	r24, r24
+ 5c0:	13 81       	ldd	r17, Z+3	; 0x03
+ 5c2:	9c 01       	movw	r18, r24
+ 5c4:	21 2b       	or	r18, r17
+ 5c6:	b9 01       	movw	r22, r18
+ 5c8:	d4 81       	ldd	r29, Z+4	; 0x04
+ 5ca:	8d 2f       	mov	r24, r29
+ 5cc:	90 e0       	ldi	r25, 0x00	; 0
+ 5ce:	98 2f       	mov	r25, r24
+ 5d0:	88 27       	eor	r24, r24
+ 5d2:	c5 81       	ldd	r28, Z+5	; 0x05
+ 5d4:	8c 2b       	or	r24, r28
+ 5d6:	dc 01       	movw	r26, r24
+ 5d8:	ac 01       	movw	r20, r24
+ 5da:	41 50       	subi	r20, 0x01	; 1
+ 5dc:	51 09       	sbc	r21, r1
+ 5de:	4b 37       	cpi	r20, 0x7B	; 123
+ 5e0:	51 05       	cpc	r21, r1
+ 5e2:	28 f0       	brcs	.+10     	; 0x5ee <writeMultigRegs+0x44>
+ 5e4:	83 e0       	ldi	r24, 0x03	; 3
+ 5e6:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 5ea:	80 e0       	ldi	r24, 0x00	; 0
+ 5ec:	3d c0       	rjmp	.+122    	; 0x668 <writeMultigRegs+0xbe>
+ 5ee:	82 0f       	add	r24, r18
+ 5f0:	93 1f       	adc	r25, r19
+ 5f2:	01 97       	sbiw	r24, 0x01	; 1
+ 5f4:	c2 97       	sbiw	r24, 0x32	; 50
+ 5f6:	00 f1       	brcs	.+64     	; 0x638 <writeMultigRegs+0x8e>
+ 5f8:	82 e0       	ldi	r24, 0x02	; 2
+ 5fa:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 5fe:	80 e0       	ldi	r24, 0x00	; 0
+ 600:	33 c0       	rjmp	.+102    	; 0x668 <writeMultigRegs+0xbe>
+ 602:	f9 01       	movw	r30, r18
+ 604:	e4 51       	subi	r30, 0x14	; 20
+ 606:	fd 4f       	sbci	r31, 0xFD	; 253
+ 608:	80 81       	ld	r24, Z
+ 60a:	90 e0       	ldi	r25, 0x00	; 0
+ 60c:	98 2f       	mov	r25, r24
+ 60e:	88 27       	eor	r24, r24
+ 610:	f9 01       	movw	r30, r18
+ 612:	31 96       	adiw	r30, 0x01	; 1
+ 614:	e4 51       	subi	r30, 0x14	; 20
+ 616:	fd 4f       	sbci	r31, 0xFD	; 253
+ 618:	2e 5f       	subi	r18, 0xFE	; 254
+ 61a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 61c:	e0 81       	ld	r30, Z
+ 61e:	8e 2b       	or	r24, r30
+ 620:	fb 01       	movw	r30, r22
+ 622:	ee 0f       	add	r30, r30
+ 624:	ff 1f       	adc	r31, r31
+ 626:	ea 58       	subi	r30, 0x8A	; 138
+ 628:	ff 4f       	sbci	r31, 0xFF	; 255
+ 62a:	91 83       	std	Z+1, r25	; 0x01
+ 62c:	80 83       	st	Z, r24
+ 62e:	4f 5f       	subi	r20, 0xFF	; 255
+ 630:	5f 4f       	sbci	r21, 0xFF	; 255
+ 632:	6f 5f       	subi	r22, 0xFF	; 255
+ 634:	7f 4f       	sbci	r23, 0xFF	; 255
+ 636:	04 c0       	rjmp	.+8      	; 0x640 <writeMultigRegs+0x96>
+ 638:	40 e0       	ldi	r20, 0x00	; 0
+ 63a:	50 e0       	ldi	r21, 0x00	; 0
+ 63c:	27 e0       	ldi	r18, 0x07	; 7
+ 63e:	30 e0       	ldi	r19, 0x00	; 0
+ 640:	4a 17       	cp	r20, r26
+ 642:	5b 07       	cpc	r21, r27
+ 644:	f0 f2       	brcs	.-68     	; 0x602 <writeMultigRegs+0x58>
+ 646:	ea eb       	ldi	r30, 0xBA	; 186
+ 648:	f2 e0       	ldi	r31, 0x02	; 2
+ 64a:	8d e1       	ldi	r24, 0x1D	; 29
+ 64c:	80 83       	st	Z, r24
+ 64e:	80 91 ed 02 	lds	r24, 0x02ED	; 0x8002ed <RxData+0x1>
+ 652:	81 83       	std	Z+1, r24	; 0x01
+ 654:	02 83       	std	Z+2, r16	; 0x02
+ 656:	13 83       	std	Z+3, r17	; 0x03
+ 658:	d4 83       	std	Z+4, r29	; 0x04
+ 65a:	c5 83       	std	Z+5, r28	; 0x05
+ 65c:	66 e0       	ldi	r22, 0x06	; 6
+ 65e:	70 e0       	ldi	r23, 0x00	; 0
+ 660:	cf 01       	movw	r24, r30
+ 662:	0e 94 79 00 	call	0xf2	; 0xf2 <sendData>
+ 666:	81 e0       	ldi	r24, 0x01	; 1
+ 668:	df 91       	pop	r29
+ 66a:	cf 91       	pop	r28
+ 66c:	1f 91       	pop	r17
+ 66e:	0f 91       	pop	r16
+ 670:	08 95       	ret
+
+00000672 <ResponseData>:
+ 672:	80 91 ed 02 	lds	r24, 0x02ED	; 0x8002ed <RxData+0x1>
+ 676:	85 30       	cpi	r24, 0x05	; 5
+ 678:	99 f0       	breq	.+38     	; 0x6a0 <ResponseData+0x2e>
+ 67a:	28 f4       	brcc	.+10     	; 0x686 <ResponseData+0x14>
+ 67c:	81 30       	cpi	r24, 0x01	; 1
+ 67e:	51 f0       	breq	.+20     	; 0x694 <ResponseData+0x22>
+ 680:	83 30       	cpi	r24, 0x03	; 3
+ 682:	59 f0       	breq	.+22     	; 0x69a <ResponseData+0x28>
+ 684:	19 c0       	rjmp	.+50     	; 0x6b8 <ResponseData+0x46>
+ 686:	8f 30       	cpi	r24, 0x0F	; 15
+ 688:	89 f0       	breq	.+34     	; 0x6ac <ResponseData+0x3a>
+ 68a:	80 31       	cpi	r24, 0x10	; 16
+ 68c:	91 f0       	breq	.+36     	; 0x6b2 <ResponseData+0x40>
+ 68e:	86 30       	cpi	r24, 0x06	; 6
+ 690:	99 f4       	brne	.+38     	; 0x6b8 <ResponseData+0x46>
+ 692:	09 c0       	rjmp	.+18     	; 0x6a6 <ResponseData+0x34>
+ 694:	0e 94 0a 01 	call	0x214	; 0x214 <readCoils>
+ 698:	08 95       	ret
+ 69a:	0e 94 b9 00 	call	0x172	; 0x172 <readHoldingRegs>
+ 69e:	08 95       	ret
+ 6a0:	0e 94 d5 01 	call	0x3aa	; 0x3aa <writeSingleCoil>
+ 6a4:	08 95       	ret
+ 6a6:	0e 94 9e 01 	call	0x33c	; 0x33c <writeSingleReg>
+ 6aa:	08 95       	ret
+ 6ac:	0e 94 34 02 	call	0x468	; 0x468 <writeMultiCoils>
+ 6b0:	08 95       	ret
+ 6b2:	0e 94 d5 02 	call	0x5aa	; 0x5aa <writeMultigRegs>
+ 6b6:	08 95       	ret
+ 6b8:	81 e0       	ldi	r24, 0x01	; 1
+ 6ba:	0e 94 a8 00 	call	0x150	; 0x150 <modbusException>
+ 6be:	08 95       	ret
+
+000006c0 <ON_Conveyor>:
+ 6c0:	88 b3       	in	r24, 0x18	; 24
+ 6c2:	8f 7b       	andi	r24, 0xBF	; 191
+ 6c4:	88 bb       	out	0x18, r24	; 24
+ 6c6:	88 b3       	in	r24, 0x18	; 24
+ 6c8:	80 68       	ori	r24, 0x80	; 128
+ 6ca:	88 bb       	out	0x18, r24	; 24
+ 6cc:	08 95       	ret
+
+000006ce <OFF_Conveyor>:
+ 6ce:	88 b3       	in	r24, 0x18	; 24
+ 6d0:	8f 7b       	andi	r24, 0xBF	; 191
+ 6d2:	88 bb       	out	0x18, r24	; 24
+ 6d4:	88 b3       	in	r24, 0x18	; 24
+ 6d6:	8f 77       	andi	r24, 0x7F	; 127
+ 6d8:	88 bb       	out	0x18, r24	; 24
+ 6da:	08 95       	ret
+
+000006dc <ConveyorSpeed>:
+ 6dc:	20 e1       	ldi	r18, 0x10	; 16
+ 6de:	37 e2       	ldi	r19, 0x27	; 39
+ 6e0:	ac 01       	movw	r20, r24
+ 6e2:	42 9f       	mul	r20, r18
+ 6e4:	c0 01       	movw	r24, r0
+ 6e6:	43 9f       	mul	r20, r19
+ 6e8:	90 0d       	add	r25, r0
+ 6ea:	52 9f       	mul	r21, r18
+ 6ec:	90 0d       	add	r25, r0
+ 6ee:	11 24       	eor	r1, r1
+ 6f0:	9b bd       	out	0x2b, r25	; 43
+ 6f2:	8a bd       	out	0x2a, r24	; 42
+ 6f4:	08 95       	ret
+
+000006f6 <MotorAngle>:
+ 6f6:	26 e1       	ldi	r18, 0x16	; 22
+ 6f8:	ac 01       	movw	r20, r24
+ 6fa:	24 9f       	mul	r18, r20
+ 6fc:	c0 01       	movw	r24, r0
+ 6fe:	25 9f       	mul	r18, r21
+ 700:	90 0d       	add	r25, r0
+ 702:	11 24       	eor	r1, r1
+ 704:	8c 57       	subi	r24, 0x7C	; 124
+ 706:	9c 4f       	sbci	r25, 0xFC	; 252
+ 708:	99 bd       	out	0x29, r25	; 41
+ 70a:	88 bd       	out	0x28, r24	; 40
+ 70c:	08 95       	ret
+
+0000070e <__vector_8>:
+ 70e:	1f 92       	push	r1
+ 710:	0f 92       	push	r0
+ 712:	0f b6       	in	r0, 0x3f	; 63
+ 714:	0f 92       	push	r0
+ 716:	11 24       	eor	r1, r1
+ 718:	8f 93       	push	r24
+ 71a:	9f 93       	push	r25
+ 71c:	80 91 b6 02 	lds	r24, 0x02B6	; 0x8002b6 <timerCounter1>
+ 720:	90 91 b7 02 	lds	r25, 0x02B7	; 0x8002b7 <timerCounter1+0x1>
+ 724:	01 96       	adiw	r24, 0x01	; 1
+ 726:	90 93 b7 02 	sts	0x02B7, r25	; 0x8002b7 <timerCounter1+0x1>
+ 72a:	80 93 b6 02 	sts	0x02B6, r24	; 0x8002b6 <timerCounter1>
+ 72e:	9f 91       	pop	r25
+ 730:	8f 91       	pop	r24
+ 732:	0f 90       	pop	r0
+ 734:	0f be       	out	0x3f, r0	; 63
+ 736:	0f 90       	pop	r0
+ 738:	1f 90       	pop	r1
+ 73a:	18 95       	reti
+
+0000073c <__vector_11>:
+
+ISR(USART_RXC_vect)
+{
+ 73c:	1f 92       	push	r1
+ 73e:	0f 92       	push	r0
+ 740:	0f b6       	in	r0, 0x3f	; 63
+ 742:	0f 92       	push	r0
+ 744:	11 24       	eor	r1, r1
+ 746:	2f 93       	push	r18
+ 748:	3f 93       	push	r19
+ 74a:	4f 93       	push	r20
+ 74c:	5f 93       	push	r21
+ 74e:	6f 93       	push	r22
+ 750:	7f 93       	push	r23
+ 752:	8f 93       	push	r24
+ 754:	9f 93       	push	r25
+ 756:	af 93       	push	r26
+ 758:	bf 93       	push	r27
+ 75a:	cf 93       	push	r28
+ 75c:	df 93       	push	r29
+ 75e:	ef 93       	push	r30
+ 760:	ff 93       	push	r31
+	RxData[index] = receive();
+ 762:	c0 91 b4 02 	lds	r28, 0x02B4	; 0x8002b4 <index>
+ 766:	d0 91 b5 02 	lds	r29, 0x02B5	; 0x8002b5 <index+0x1>
+ 76a:	0e 94 55 00 	call	0xaa	; 0xaa <receive>
+ 76e:	c4 51       	subi	r28, 0x14	; 20
+ 770:	dd 4f       	sbci	r29, 0xFD	; 253
+ 772:	88 83       	st	Y, r24
+	
+	if (RxData[0] == SLAVE_ID)
+ 774:	80 91 ec 02 	lds	r24, 0x02EC	; 0x8002ec <RxData>
+ 778:	8d 31       	cpi	r24, 0x1D	; 29
+ 77a:	09 f5       	brne	.+66     	; 0x7be <__vector_11+0x82>
+	{
+		index += 1;
+ 77c:	80 91 b4 02 	lds	r24, 0x02B4	; 0x8002b4 <index>
+ 780:	90 91 b5 02 	lds	r25, 0x02B5	; 0x8002b5 <index+0x1>
+ 784:	01 96       	adiw	r24, 0x01	; 1
+ 786:	90 93 b5 02 	sts	0x02B5, r25	; 0x8002b5 <index+0x1>
+ 78a:	80 93 b4 02 	sts	0x02B4, r24	; 0x8002b4 <index>
+		if (index > 7)
+ 78e:	08 97       	sbiw	r24, 0x08	; 8
+ 790:	b4 f0       	brlt	.+44     	; 0x7be <__vector_11+0x82>
+		{
+			uint16_t _crc16 = (RxData[7]<<8) | RxData[6];
+ 792:	ec ee       	ldi	r30, 0xEC	; 236
+ 794:	f2 e0       	ldi	r31, 0x02	; 2
+ 796:	c7 81       	ldd	r28, Z+7	; 0x07
+ 798:	d0 e0       	ldi	r29, 0x00	; 0
+ 79a:	dc 2f       	mov	r29, r28
+ 79c:	cc 27       	eor	r28, r28
+ 79e:	86 81       	ldd	r24, Z+6	; 0x06
+ 7a0:	c8 2b       	or	r28, r24
+			if (_crc16 == crc16(RxData,6))
+ 7a2:	66 e0       	ldi	r22, 0x06	; 6
+ 7a4:	70 e0       	ldi	r23, 0x00	; 0
+ 7a6:	cf 01       	movw	r24, r30
+ 7a8:	0e 94 59 00 	call	0xb2	; 0xb2 <crc16>
+ 7ac:	c8 17       	cp	r28, r24
+ 7ae:	d9 07       	cpc	r29, r25
+ 7b0:	11 f4       	brne	.+4      	; 0x7b6 <__vector_11+0x7a>
+			{
+				ResponseData();
+ 7b2:	0e 94 39 03 	call	0x672	; 0x672 <ResponseData>
+			}
+			index = 0;
+ 7b6:	10 92 b5 02 	sts	0x02B5, r1	; 0x8002b5 <index+0x1>
+ 7ba:	10 92 b4 02 	sts	0x02B4, r1	; 0x8002b4 <index>
+		}
+	}
+}
+ 7be:	ff 91       	pop	r31
+ 7c0:	ef 91       	pop	r30
+ 7c2:	df 91       	pop	r29
+ 7c4:	cf 91       	pop	r28
+ 7c6:	bf 91       	pop	r27
+ 7c8:	af 91       	pop	r26
+ 7ca:	9f 91       	pop	r25
+ 7cc:	8f 91       	pop	r24
+ 7ce:	7f 91       	pop	r23
+ 7d0:	6f 91       	pop	r22
+ 7d2:	5f 91       	pop	r21
+ 7d4:	4f 91       	pop	r20
+ 7d6:	3f 91       	pop	r19
+ 7d8:	2f 91       	pop	r18
+ 7da:	0f 90       	pop	r0
+ 7dc:	0f be       	out	0x3f, r0	; 63
+ 7de:	0f 90       	pop	r0
+ 7e0:	1f 90       	pop	r1
+ 7e2:	18 95       	reti
+
+000007e4 <main>:
+
+int main(void)
+{	
+	
+	DDRA = 0x00;
+ 7e4:	1a ba       	out	0x1a, r1	; 26
+	PORTA = (1<<InputSSMidConveyor) | (1<<InputSsCommodity); // PortA7 is INPUT 
+ 7e6:	80 ec       	ldi	r24, 0xC0	; 192
+ 7e8:	8b bb       	out	0x1b, r24	; 27
+	
+	DDRB = 0xFF;
+ 7ea:	8f ef       	ldi	r24, 0xFF	; 255
+ 7ec:	87 bb       	out	0x17, r24	; 23
+	PORTB = 0xFF;
+ 7ee:	88 bb       	out	0x18, r24	; 24
+	
+	DDRD |= (1<<PIND1) | (1<<PIND4) | (1<<PIND5);
+ 7f0:	91 b3       	in	r25, 0x11	; 17
+ 7f2:	92 63       	ori	r25, 0x32	; 50
+ 7f4:	91 bb       	out	0x11, r25	; 17
+	PORTD = 0xFF;
+ 7f6:	82 bb       	out	0x12, r24	; 18
+	
+// 	TCCR0 |= (1<<CS01) | (1<<CS00);
+// 	TCNT0 = 6;
+// 	TIMSK = (1<<TOIE0);
+	
+	TCCR1A |= (1<<COM1A1) | (1<<COM1B1) | (1<<WGM11);
+ 7f8:	8f b5       	in	r24, 0x2f	; 47
+ 7fa:	82 6a       	ori	r24, 0xA2	; 162
+ 7fc:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B |= (1<<WGM13) | (1<<WGM12) | (1<<CS11);
+ 7fe:	8e b5       	in	r24, 0x2e	; 46
+ 800:	8a 61       	ori	r24, 0x1A	; 26
+ 802:	8e bd       	out	0x2e, r24	; 46
+	TIMSK |= (1<<TOIE1);
+ 804:	89 b7       	in	r24, 0x39	; 57
+ 806:	84 60       	ori	r24, 0x04	; 4
+ 808:	89 bf       	out	0x39, r24	; 57
+	
+	ConveyorSpeed(2); // PWM Conveyor : OCR1A         
+ 80a:	82 e0       	ldi	r24, 0x02	; 2
+ 80c:	90 e0       	ldi	r25, 0x00	; 0
+ 80e:	0e 94 6e 03 	call	0x6dc	; 0x6dc <ConveyorSpeed>
+	MotorAngle(servoOFF); // PWM Motor : OCR1B
+ 812:	80 91 b2 02 	lds	r24, 0x02B2	; 0x8002b2 <__data_end>
+ 816:	90 91 b3 02 	lds	r25, 0x02B3	; 0x8002b3 <__data_end+0x1>
+ 81a:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <MotorAngle>
+	ICR1 = 40000;
+ 81e:	80 e4       	ldi	r24, 0x40	; 64
+ 820:	9c e9       	ldi	r25, 0x9C	; 156
+ 822:	97 bd       	out	0x27, r25	; 39
+ 824:	86 bd       	out	0x26, r24	; 38
+	
+	init_usart();
+ 826:	0e 94 49 00 	call	0x92	; 0x92 <init_usart>
+	
+	sei();
+ 82a:	78 94       	sei
+	
+    /* Replace with your application code */
+    while (1) 
+    {
+		int mode = Holding_Registers_Database[0];
+ 82c:	e6 e7       	ldi	r30, 0x76	; 118
+ 82e:	f0 e0       	ldi	r31, 0x00	; 0
+ 830:	80 81       	ld	r24, Z
+ 832:	91 81       	ldd	r25, Z+1	; 0x01
+		int speed = Holding_Registers_Database[1];
+ 834:	c2 81       	ldd	r28, Z+2	; 0x02
+ 836:	d3 81       	ldd	r29, Z+3	; 0x03
+		
+		//MotorAngle(servo);
+		
+		switch (mode)
+ 838:	82 30       	cpi	r24, 0x02	; 2
+ 83a:	91 05       	cpc	r25, r1
+ 83c:	09 f4       	brne	.+2      	; 0x840 <main+0x5c>
+ 83e:	79 c0       	rjmp	.+242    	; 0x932 <main+0x14e>
+ 840:	83 30       	cpi	r24, 0x03	; 3
+ 842:	91 05       	cpc	r25, r1
+ 844:	09 f4       	brne	.+2      	; 0x848 <main+0x64>
+ 846:	cc c0       	rjmp	.+408    	; 0x9e0 <main+0x1fc>
+ 848:	01 97       	sbiw	r24, 0x01	; 1
+ 84a:	09 f0       	breq	.+2      	; 0x84e <main+0x6a>
+ 84c:	d5 c0       	rjmp	.+426    	; 0x9f8 <main+0x214>
+		{
+			/* Nhap kho có dung trên bang tai */
+			case 1:
+			/* Your code here */
+				
+				ConveyorSpeed(speed);
+ 84e:	ce 01       	movw	r24, r28
+ 850:	0e 94 6e 03 	call	0x6dc	; 0x6dc <ConveyorSpeed>
+				if (digitalREAD(PINA,InputSSMidConveyor))
+ 854:	ce 9b       	sbis	0x19, 6	; 25
+ 856:	11 c0       	rjmp	.+34     	; 0x87a <main+0x96>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 858:	8f e5       	ldi	r24, 0x5F	; 95
+ 85a:	9a ee       	ldi	r25, 0xEA	; 234
+ 85c:	01 97       	sbiw	r24, 0x01	; 1
+ 85e:	f1 f7       	brne	.-4      	; 0x85c <main+0x78>
+ 860:	00 c0       	rjmp	.+0      	; 0x862 <main+0x7e>
+ 862:	00 00       	nop
+				{
+					_delay_ms(15);
+					ON_Conveyor();
+ 864:	0e 94 60 03 	call	0x6c0	; 0x6c0 <ON_Conveyor>
+					CoilMotorConveyor = 1;
+ 868:	e6 e7       	ldi	r30, 0x76	; 118
+ 86a:	f0 e0       	ldi	r31, 0x00	; 0
+ 86c:	81 e0       	ldi	r24, 0x01	; 1
+ 86e:	90 e0       	ldi	r25, 0x00	; 0
+ 870:	95 83       	std	Z+5, r25	; 0x05
+ 872:	84 83       	std	Z+4, r24	; 0x04
+					CoilSSMidConveyor = 0;
+ 874:	11 86       	std	Z+9, r1	; 0x09
+ 876:	10 86       	std	Z+8, r1	; 0x08
+ 878:	10 c0       	rjmp	.+32     	; 0x89a <main+0xb6>
+ 87a:	8f e5       	ldi	r24, 0x5F	; 95
+ 87c:	9a ee       	ldi	r25, 0xEA	; 234
+ 87e:	01 97       	sbiw	r24, 0x01	; 1
+ 880:	f1 f7       	brne	.-4      	; 0x87e <main+0x9a>
+ 882:	00 c0       	rjmp	.+0      	; 0x884 <main+0xa0>
+ 884:	00 00       	nop
+				}
+				else
+				{
+					_delay_ms(15);
+					OFF_Conveyor();
+ 886:	0e 94 67 03 	call	0x6ce	; 0x6ce <OFF_Conveyor>
+					CoilMotorConveyor = 0;
+ 88a:	e6 e7       	ldi	r30, 0x76	; 118
+ 88c:	f0 e0       	ldi	r31, 0x00	; 0
+ 88e:	15 82       	std	Z+5, r1	; 0x05
+ 890:	14 82       	std	Z+4, r1	; 0x04
+					CoilSSMidConveyor = 1;
+ 892:	81 e0       	ldi	r24, 0x01	; 1
+ 894:	90 e0       	ldi	r25, 0x00	; 0
+ 896:	91 87       	std	Z+9, r25	; 0x09
+ 898:	80 87       	std	Z+8, r24	; 0x08
+				}
+				
+				if (digitalREAD(PINA,InputSsCommodity) == 0)
+ 89a:	cf 99       	sbic	0x19, 7	; 25
+ 89c:	11 c0       	rjmp	.+34     	; 0x8c0 <main+0xdc>
+ 89e:	8f e3       	ldi	r24, 0x3F	; 63
+ 8a0:	9c e9       	ldi	r25, 0x9C	; 156
+ 8a2:	01 97       	sbiw	r24, 0x01	; 1
+ 8a4:	f1 f7       	brne	.-4      	; 0x8a2 <main+0xbe>
+ 8a6:	00 c0       	rjmp	.+0      	; 0x8a8 <main+0xc4>
+ 8a8:	00 00       	nop
+				{
+					_delay_ms(10);
+					CoilSSCommodity = 1;
+ 8aa:	81 e0       	ldi	r24, 0x01	; 1
+ 8ac:	90 e0       	ldi	r25, 0x00	; 0
+ 8ae:	90 93 7d 00 	sts	0x007D, r25	; 0x80007d <Holding_Registers_Database+0x7>
+ 8b2:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <Holding_Registers_Database+0x6>
+					checkCommodity = 1;
+ 8b6:	90 93 b9 02 	sts	0x02B9, r25	; 0x8002b9 <checkCommodity+0x1>
+ 8ba:	80 93 b8 02 	sts	0x02B8, r24	; 0x8002b8 <checkCommodity>
+ 8be:	04 c0       	rjmp	.+8      	; 0x8c8 <main+0xe4>
+				}
+				else
+					CoilSSCommodity = 0;
+ 8c0:	10 92 7d 00 	sts	0x007D, r1	; 0x80007d <Holding_Registers_Database+0x7>
+ 8c4:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <Holding_Registers_Database+0x6>
+
+				if (checkCommodity == 1)
+ 8c8:	80 91 b8 02 	lds	r24, 0x02B8	; 0x8002b8 <checkCommodity>
+ 8cc:	90 91 b9 02 	lds	r25, 0x02B9	; 0x8002b9 <checkCommodity+0x1>
+ 8d0:	01 97       	sbiw	r24, 0x01	; 1
+ 8d2:	09 f0       	breq	.+2      	; 0x8d6 <main+0xf2>
+ 8d4:	ab cf       	rjmp	.-170    	; 0x82c <main+0x48>
+				{
+					//timerCounter1 = 0;
+					if (timerCounter1 >= 270)
+ 8d6:	80 91 b6 02 	lds	r24, 0x02B6	; 0x8002b6 <timerCounter1>
+ 8da:	90 91 b7 02 	lds	r25, 0x02B7	; 0x8002b7 <timerCounter1+0x1>
+ 8de:	8e 30       	cpi	r24, 0x0E	; 14
+ 8e0:	91 40       	sbci	r25, 0x01	; 1
+ 8e2:	60 f0       	brcs	.+24     	; 0x8fc <main+0x118>
+					{
+						MotorAngle(servoON);
+ 8e4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 8e8:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 8ec:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <MotorAngle>
+						CoilMotorServo = 1;
+ 8f0:	81 e0       	ldi	r24, 0x01	; 1
+ 8f2:	90 e0       	ldi	r25, 0x00	; 0
+ 8f4:	90 93 81 00 	sts	0x0081, r25	; 0x800081 <Holding_Registers_Database+0xb>
+ 8f8:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <Holding_Registers_Database+0xa>
+					}
+					if (timerCounter1 >= 300)
+ 8fc:	80 91 b6 02 	lds	r24, 0x02B6	; 0x8002b6 <timerCounter1>
+ 900:	90 91 b7 02 	lds	r25, 0x02B7	; 0x8002b7 <timerCounter1+0x1>
+ 904:	8c 32       	cpi	r24, 0x2C	; 44
+ 906:	91 40       	sbci	r25, 0x01	; 1
+ 908:	08 f4       	brcc	.+2      	; 0x90c <main+0x128>
+ 90a:	90 cf       	rjmp	.-224    	; 0x82c <main+0x48>
+					{
+						MotorAngle(servoOFF);
+ 90c:	80 91 b2 02 	lds	r24, 0x02B2	; 0x8002b2 <__data_end>
+ 910:	90 91 b3 02 	lds	r25, 0x02B3	; 0x8002b3 <__data_end+0x1>
+ 914:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <MotorAngle>
+						CoilMotorServo = 0;
+ 918:	10 92 81 00 	sts	0x0081, r1	; 0x800081 <Holding_Registers_Database+0xb>
+ 91c:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <Holding_Registers_Database+0xa>
+						timerCounter1 = 0;
+ 920:	10 92 b7 02 	sts	0x02B7, r1	; 0x8002b7 <timerCounter1+0x1>
+ 924:	10 92 b6 02 	sts	0x02B6, r1	; 0x8002b6 <timerCounter1>
+						checkCommodity = 0;
+ 928:	10 92 b9 02 	sts	0x02B9, r1	; 0x8002b9 <checkCommodity+0x1>
+ 92c:	10 92 b8 02 	sts	0x02B8, r1	; 0x8002b8 <checkCommodity>
+ 930:	7d cf       	rjmp	.-262    	; 0x82c <main+0x48>
+				
+			break;
+			
+			// Nhap kho không dung trên bang t?i
+			case 2:
+				ON_Conveyor();
+ 932:	0e 94 60 03 	call	0x6c0	; 0x6c0 <ON_Conveyor>
+				ConveyorSpeed(speed);
+ 936:	ce 01       	movw	r24, r28
+ 938:	0e 94 6e 03 	call	0x6dc	; 0x6dc <ConveyorSpeed>
+				CoilMotorConveyor = 1;
+ 93c:	81 e0       	ldi	r24, 0x01	; 1
+ 93e:	90 e0       	ldi	r25, 0x00	; 0
+ 940:	90 93 7b 00 	sts	0x007B, r25	; 0x80007b <Holding_Registers_Database+0x5>
+ 944:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <Holding_Registers_Database+0x4>
+				
+				if (digitalREAD(PINA,InputSsCommodity) == 0)
+ 948:	cf 99       	sbic	0x19, 7	; 25
+ 94a:	11 c0       	rjmp	.+34     	; 0x96e <main+0x18a>
+ 94c:	8f e3       	ldi	r24, 0x3F	; 63
+ 94e:	9c e9       	ldi	r25, 0x9C	; 156
+ 950:	01 97       	sbiw	r24, 0x01	; 1
+ 952:	f1 f7       	brne	.-4      	; 0x950 <main+0x16c>
+ 954:	00 c0       	rjmp	.+0      	; 0x956 <main+0x172>
+ 956:	00 00       	nop
+				{
+					_delay_ms(10);
+					CoilSSCommodity = 1;
+ 958:	81 e0       	ldi	r24, 0x01	; 1
+ 95a:	90 e0       	ldi	r25, 0x00	; 0
+ 95c:	90 93 7d 00 	sts	0x007D, r25	; 0x80007d <Holding_Registers_Database+0x7>
+ 960:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <Holding_Registers_Database+0x6>
+					checkCommodity = 1;
+ 964:	90 93 b9 02 	sts	0x02B9, r25	; 0x8002b9 <checkCommodity+0x1>
+ 968:	80 93 b8 02 	sts	0x02B8, r24	; 0x8002b8 <checkCommodity>
+ 96c:	04 c0       	rjmp	.+8      	; 0x976 <main+0x192>
+				}
+				else
+					CoilSSCommodity = 0;
+ 96e:	10 92 7d 00 	sts	0x007D, r1	; 0x80007d <Holding_Registers_Database+0x7>
+ 972:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <Holding_Registers_Database+0x6>
+				if (checkCommodity == 1)
+ 976:	80 91 b8 02 	lds	r24, 0x02B8	; 0x8002b8 <checkCommodity>
+ 97a:	90 91 b9 02 	lds	r25, 0x02B9	; 0x8002b9 <checkCommodity+0x1>
+ 97e:	01 97       	sbiw	r24, 0x01	; 1
+ 980:	09 f0       	breq	.+2      	; 0x984 <main+0x1a0>
+ 982:	54 cf       	rjmp	.-344    	; 0x82c <main+0x48>
+				{
+					if (timerCounter1 >= 320)
+ 984:	80 91 b6 02 	lds	r24, 0x02B6	; 0x8002b6 <timerCounter1>
+ 988:	90 91 b7 02 	lds	r25, 0x02B7	; 0x8002b7 <timerCounter1+0x1>
+ 98c:	80 34       	cpi	r24, 0x40	; 64
+ 98e:	91 40       	sbci	r25, 0x01	; 1
+ 990:	60 f0       	brcs	.+24     	; 0x9aa <main+0x1c6>
+					{
+						MotorAngle(servoON);
+ 992:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 996:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 99a:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <MotorAngle>
+						CoilMotorServo = 1;
+ 99e:	81 e0       	ldi	r24, 0x01	; 1
+ 9a0:	90 e0       	ldi	r25, 0x00	; 0
+ 9a2:	90 93 81 00 	sts	0x0081, r25	; 0x800081 <Holding_Registers_Database+0xb>
+ 9a6:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <Holding_Registers_Database+0xa>
+					}
+					if (timerCounter1 >= 350)
+ 9aa:	80 91 b6 02 	lds	r24, 0x02B6	; 0x8002b6 <timerCounter1>
+ 9ae:	90 91 b7 02 	lds	r25, 0x02B7	; 0x8002b7 <timerCounter1+0x1>
+ 9b2:	8e 35       	cpi	r24, 0x5E	; 94
+ 9b4:	91 40       	sbci	r25, 0x01	; 1
+ 9b6:	08 f4       	brcc	.+2      	; 0x9ba <main+0x1d6>
+ 9b8:	39 cf       	rjmp	.-398    	; 0x82c <main+0x48>
+					{
+						MotorAngle(servoOFF);
+ 9ba:	80 91 b2 02 	lds	r24, 0x02B2	; 0x8002b2 <__data_end>
+ 9be:	90 91 b3 02 	lds	r25, 0x02B3	; 0x8002b3 <__data_end+0x1>
+ 9c2:	0e 94 7b 03 	call	0x6f6	; 0x6f6 <MotorAngle>
+						CoilMotorServo = 0;
+ 9c6:	10 92 81 00 	sts	0x0081, r1	; 0x800081 <Holding_Registers_Database+0xb>
+ 9ca:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <Holding_Registers_Database+0xa>
+						timerCounter1 = 0;
+ 9ce:	10 92 b7 02 	sts	0x02B7, r1	; 0x8002b7 <timerCounter1+0x1>
+ 9d2:	10 92 b6 02 	sts	0x02B6, r1	; 0x8002b6 <timerCounter1>
+						checkCommodity = 0;
+ 9d6:	10 92 b9 02 	sts	0x02B9, r1	; 0x8002b9 <checkCommodity+0x1>
+ 9da:	10 92 b8 02 	sts	0x02B8, r1	; 0x8002b8 <checkCommodity>
+ 9de:	26 cf       	rjmp	.-436    	; 0x82c <main+0x48>
+				
+			break;
+			
+			// Xuat kho 
+			case 3:
+				ON_Conveyor();
+ 9e0:	0e 94 60 03 	call	0x6c0	; 0x6c0 <ON_Conveyor>
+				ConveyorSpeed(speed);
+ 9e4:	ce 01       	movw	r24, r28
+ 9e6:	0e 94 6e 03 	call	0x6dc	; 0x6dc <ConveyorSpeed>
+				CoilMotorConveyor = 1;
+ 9ea:	81 e0       	ldi	r24, 0x01	; 1
+ 9ec:	90 e0       	ldi	r25, 0x00	; 0
+ 9ee:	90 93 7b 00 	sts	0x007B, r25	; 0x80007b <Holding_Registers_Database+0x5>
+ 9f2:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <Holding_Registers_Database+0x4>
+			break;
+ 9f6:	1a cf       	rjmp	.-460    	; 0x82c <main+0x48>
+			
+			default:
+				OFF_Conveyor();
+ 9f8:	0e 94 67 03 	call	0x6ce	; 0x6ce <OFF_Conveyor>
+				CoilMotorConveyor = 0;
+ 9fc:	e6 e7       	ldi	r30, 0x76	; 118
+ 9fe:	f0 e0       	ldi	r31, 0x00	; 0
+ a00:	15 82       	std	Z+5, r1	; 0x05
+ a02:	14 82       	std	Z+4, r1	; 0x04
+				CoilMotorServo = 0;
+ a04:	13 86       	std	Z+11, r1	; 0x0b
+ a06:	12 86       	std	Z+10, r1	; 0x0a
+				CoilSSCommodity = 0;
+ a08:	17 82       	std	Z+7, r1	; 0x07
+ a0a:	16 82       	std	Z+6, r1	; 0x06
+				CoilSSMidConveyor = 0;
+ a0c:	11 86       	std	Z+9, r1	; 0x09
+ a0e:	10 86       	std	Z+8, r1	; 0x08
+				
+			/* Your code here */
+			break;
+ a10:	0d cf       	rjmp	.-486    	; 0x82c <main+0x48>
+
+00000a12 <_exit>:
+ a12:	f8 94       	cli
+
+00000a14 <__stop_program>:
+ a14:	ff cf       	rjmp	.-2      	; 0xa14 <__stop_program>
