@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D0C603CF-0214-4231-9A54-12F9CDC24720}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GradutionThesis</RootNamespace>
+    <AssemblyName>GradutionThesis</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NetToolKit, Version=2.1.0.444, Culture=neutral, PublicKeyToken=5107b9c608443dcc" />
+    <Reference Include="RJCodeAdvance.RJControls">
+      <HintPath>..\..\..\..\DATA\C Sharp\RJCodeAdvance.RJControls.dll</HintPath>
+    </Reference>
+    <Reference Include="SKCLNET, Version=4.4.1.0, Culture=neutral, PublicKeyToken=d5770e63406d04a0" />
+    <Reference Include="SymbolFactoryDotNet, Version=2.0.0.221, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="SymbolFactoryNetEngine, Version=2.0.0.221, Culture=neutral, PublicKeyToken=5107b9c608443dcc" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPasswordChanged.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPasswordChanged.Designer.cs">
+      <DependentUpon>FormPasswordChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductActually.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductActually.Designer.cs">
+      <DependentUpon>FormProductActually.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegis.Designer.cs">
+      <DependentUpon>FormRegis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRobot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRobot.Designer.cs">
+      <DependentUpon>FormRobot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QRcode.cs" />
+    <Compile Include="RobotMath.cs" />
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPasswordChanged.resx">
+      <DependentUpon>FormPasswordChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductActually.resx">
+      <DependentUpon>FormProductActually.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegis.resx">
+      <DependentUpon>FormRegis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegis.vi-VN.resx">
+      <DependentUpon>FormRegis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRobot.resx">
+      <DependentUpon>FormRobot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ok.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TestThreeLayer\BLL\BLL.csproj">
+      <Project>{fc5732b4-9012-4f1c-b344-f629f890d184}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TestThreeLayer\DTO\DTO.csproj">
+      <Project>{9047c4b2-7c9e-48ce-8d6e-719f6de68aa0}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dof Robot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UETLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UET.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TextFileCookies.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AForge.Video.DirectShow">
+      <Version>2.2.5</Version>
+    </PackageReference>
+    <PackageReference Include="EasyModbusTCP">
+      <Version>5.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Emgu.CV">
+      <Version>4.8.0.5324</Version>
+    </PackageReference>
+    <PackageReference Include="Emgu.CV.Bitmap">
+      <Version>4.8.0.5324</Version>
+    </PackageReference>
+    <PackageReference Include="Emgu.CV.runtime.windows">
+      <Version>4.8.0.5324</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.9</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
